@@ -1,0 +1,35 @@
+version: '3'
+services:
+  marco-api:
+    image: gm50x/marco-polo-api:latest
+    environment:
+      APP_NAME: 'MARCO'
+      PORT: 3000
+    ports:
+      - 3005:3000
+    container_name: marco-api
+    networks:
+      - skynet
+  polo-api:
+    image: gm50x/marco-polo-api:latest
+    environment:
+      APP_NAME: 'POLO'
+      PORT: 3000
+    ports:
+      - 3006:3000
+    container_name: polo-api
+    networks:
+      - skynet
+  load-balancer:
+    image: nginx:alpine
+    ports:
+      - 8000:80
+      - 8443:443
+    container_name: load-balancer
+    volumes:
+      - ./load-balancer/:/etc/nginx/conf.d/
+    networks:
+      - skynet
+networks:
+  skynet:
+    driver: bridge
