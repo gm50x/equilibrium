@@ -1,21 +1,18 @@
 # Equilibrium
-An nginx load balancing example
+An nginx load balancing example.
 
-### Build:
-
-    docker build -t marco-polo-api ./marco-polo-api
-
-### Start everything:
+### Getting Started:
+You can start the services with a single command as follows.
 
     docker-compose up
 
-### Test:
+Then you can test the services by navigating to the balancer url:port.
 
     curl http://localhost:8000
 
-### OUTPUT:
-Watch as the result changes from {appName: 'MARCO'} to {appName: 'POLO'} with each individual applicaiton response. 
 
-The load balancer is performing a round-robin balancing strategy on the servers. 
+Watch as the output changes from {appName: 'MARCO'} to {appName: 'POLO'} with each individual application's response.
 
-You can also access individual applications by hitting localhost:3005 and localhost:3006.
+Under the hood, the load balancer is performing a round-robin balancing strategy to distribute the load on the servers.
+
+    Browser --> Nginx(Load Balancer) -> [Api(1)[MARCO], Api(2)[POLO]]
