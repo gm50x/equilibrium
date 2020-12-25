@@ -1,10 +1,14 @@
+const { hostname } = require('os')
 const express = require('express')
+const morgan = require('morgan')
 
 const main = () => {
   const app = express()
 
+  app.use(morgan('dev'))
+
   app.get('/', (req, res) => {
-    const appName = process.env.APP_NAME || 'development'
+    const appName = hostname()
     res.send({ appName })
   })
 

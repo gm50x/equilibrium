@@ -1,23 +1,12 @@
 version: '3'
 services:
-  marco-api:
+  backend-api:
     build:
-      context: ./marco-polo-api
-    image: gm50x/marco-polo-api:latest
+      context: ./backend-api
+    image: gm50x/backend-api:latest
     environment:
-      APP_NAME: 'MARCO'
       PORT: 3000
-    container_name: marco-api
-    networks:
-      - skynet
-  polo-api:
-    build: 
-      context: ./marco-polo-api
-    image: gm50x/marco-polo-api:latest
-    environment:
-      APP_NAME: 'POLO'
-      PORT: 3000
-    container_name: polo-api
+    scale: 4
     networks:
       - skynet
   load-balancer:
